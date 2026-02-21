@@ -1,0 +1,937 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Abhiraj Adhikary | Data Engineering and Backend-focused CSE student building scalable data pipelines, backend services, and developer tooling." />
+    <meta name="keywords" content="Abhiraj Adhikary, Data Engineering, Backend Developer, Python, Django, FastAPI, Spark, Kafka, Airflow, Snowflake, Portfolio" />
+    <meta name="author" content="ABHIRAJ" />
+    <link rel="canonical" href="https://ABHIRAJportfolio.vercel.app/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ABHIRAJportfolio.vercel.app/" />
+    <meta property="og:title" content="ABHIRAJ." />
+    <meta property="og:description" content="Data Engineering and Backend-focused CSE student with hands-on experience in Spark, Kafka, Airflow, SQL, and cloud tooling." />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://ABHIRAJportfolio.vercel.app" />
+    <meta property="twitter:title" content="ABHIRAJ." />
+    <meta property="twitter:description" content="Data Engineering and Backend-focused CSE student with hands-on experience in Spark, Kafka, Airflow, SQL, and cloud tooling." />
+    <meta property="twitter:image" content="https://ABHIRAJportfolio.vercel.app/" />
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-TLNG322R");
+    </script>
+    <title>ABHIRAJ.</title>
+    <meta name="theme-color" content="#121212" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "ABHIRAJ",
+      "url": "https://ABHIRAJportfolio.vercel.app/",
+      "jobTitle": "Data Engineering and Backend Developer",
+      "image": "https://ABHIRAJportfolio.vercel.app/",
+      "knowsAbout": ["Python","Golang","Django","FastAPI","Apache Spark","Kafka","Airflow","Snowflake"],
+      "sameAs": ["https://github.com/abhirajadhikary06","https://leetcode.com/u/abhirajadhikary06/"],
+      "description": "Undergraduate CSE (Data Science) student building scalable data pipelines and backend systems with modern cloud and observability tooling."
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link type="logo" rel="icon" href="Assets/images/favicon.ico?v=1" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "neo-yellow": "#FBFF48",
+              "neo-pink": "#FF70A6",
+              "neo-blue": "#3B82F6",
+              "neo-green": "#33FF57",
+              "neo-purple": "#A855F7",
+              "neo-orange": "#FF9F1C",
+              "neo-red": "#FF2A2A",
+              "neo-white": "#FFFDF5",
+              "neo-black": "#121212",
+            },
+            fontFamily: {
+              display: ['"Space Grotesk"', "sans-serif"],
+              mono: ['"JetBrains Mono"', "monospace"],
+            },
+            boxShadow: {
+              hard: "4px 4px 0px 0px #000",
+              "hard-sm": "2px 2px 0px 0px #000",
+              "hard-lg": "8px 8px 0px 0px #000",
+              "hard-xl": "12px 12px 0px 0px #000",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      html, body { overflow-x: hidden; max-width: 100%; }
+      body {
+        cursor: none;
+        background-color: #fffdf5;
+        background-image:
+          radial-gradient(#000 1px, transparent 1px),
+          linear-gradient(to right, #e5e5e5 1px, transparent 1px),
+          linear-gradient(to bottom, #e5e5e5 1px, transparent 1px);
+        background-size: 40px 40px, 100px 100px, 100px 100px;
+      }
+      @media (max-width: 1023px) { body { cursor: auto; } }
+      * { box-sizing: border-box; }
+      section, header, footer, nav, div, article { max-width: 100vw; }
+
+      #cursor {
+        pointer-events: none;
+        position: fixed;
+        z-index: 9999;
+        mix-blend-mode: difference;
+        transition: width 0.2s, height 0.2s, background-color 0.2s, transform 0.1s;
+      }
+
+      /* ── TICKER & BLOG: shared marquee base ── */
+      .marquee-container {
+        overflow: hidden;
+        width: 100%;
+        max-width: 100vw;
+      }
+      .marquee-content {
+        display: flex;
+        flex-wrap: nowrap;
+        animation: scroll-left 20s linear infinite;
+        width: max-content;
+        will-change: transform;
+        backface-visibility: hidden;
+      }
+      .marquee-container:hover .marquee-content { animation-play-state: paused; }
+
+      /* ── TICKER ONLY: nowrap keeps text on single line ── */
+      .marquee-content.ticker-line {
+        white-space: nowrap;
+        animation: scroll-left 10s linear infinite;
+        gap: 0;
+      }
+
+      /* ── BLOG CARDS: fixed width + margin for gap ── */
+      .blog-card {
+        white-space: normal;
+        width: 260px !important;
+        min-width: 260px !important;
+        max-width: 260px !important;
+        flex-shrink: 0 !important;
+        margin-right: 1.25rem;
+        display: block;
+      }
+      @media (min-width: 480px) {
+        .blog-card {
+          width: 300px !important;
+          min-width: 300px !important;
+          max-width: 300px !important;
+          margin-right: 1.5rem;
+        }
+      }
+      @media (min-width: 768px) {
+        .blog-card {
+          width: 400px !important;
+          min-width: 400px !important;
+          max-width: 400px !important;
+          margin-right: 2rem;
+        }
+      }
+      @keyframes scroll-left {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
+      }
+
+      .reveal { opacity: 0; transform: translateY(40px); transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+      .reveal.active { opacity: 1; transform: translateY(0); }
+
+      .glitch-hover:hover {
+        animation: glitch-anim 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+        color: #ff2a2a;
+      }
+      @keyframes glitch-anim {
+        0%   { transform: translate(0); }
+        20%  { transform: translate(-2px, 2px); }
+        40%  { transform: translate(-2px, -2px); }
+        60%  { transform: translate(2px, 2px); }
+        80%  { transform: translate(2px, -2px); }
+        100% { transform: translate(0); }
+      }
+
+      #mobile-menu {
+        display: none; flex-direction: column; position: fixed;
+        top: 0; left: 0; width: 100vw; height: 100vh;
+        background: #121212; z-index: 999;
+        align-items: center; justify-content: center;
+        gap: 2rem; overflow: hidden;
+      }
+      #mobile-menu.open { display: flex; }
+
+      @media (max-width: 480px) {
+        .hero-title { font-size: 18vw !important; line-height: 0.85 !important; }
+        .hero-subtitle { font-size: 1rem !important; }
+      }
+      .skills-grid-cell { min-width: 0; overflow: hidden; }
+      .skills-grid-cell .skill-name { font-size: clamp(0.75rem, 2vw, 1.25rem); word-break: break-word; text-align: center; }
+      @media (max-width: 400px) { .timeline-entry { padding-left: 2rem !important; } .timeline-dot { left: -10px !important; } }
+      @media (max-width: 640px) { .contact-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; } }
+      @media (max-width: 640px) { .footer-grid { grid-template-columns: 1fr !important; gap: 2rem !important; } }
+      @media (max-width: 400px) { .section-px { padding-left: 1rem !important; padding-right: 1rem !important; } }
+      @media (max-width: 1023px) { .stats-col { height: auto !important; } }
+      #hamburger { cursor: pointer; }
+      li, p { word-break: break-word; overflow-wrap: anywhere; }
+      .break-all { word-break: break-all; }
+
+      @keyframes check { 0% { transform: scale(0.4); opacity: 0; } 60% { transform: scale(1.3); opacity: 1; } 100% { transform: scale(1); } }
+      @keyframes check-ring { 0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.8); } 70% { box-shadow: 0 0 0 30px rgba(34,197,94,0); } 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); } }
+      .animate-check { animation: check 0.8s ease-out; }
+      .animate-check-ring { animation: check-ring 1.4s ease-out; }
+    </style>
+  </head>
+
+  <body class="text-neo-black font-display antialiased selection:bg-neo-black selection:text-neo-yellow">
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TLNG322R" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <div id="cursor" class="w-6 h-6 bg-white rounded-full border-2 border-black hidden lg:block"></div>
+    <div class="fixed top-0 left-0 h-2 bg-neo-green z-[60] border-b-2 border-black" id="progressBar" style="width:0%"></div>
+
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+      <a href="#"        class="text-white text-3xl font-black font-mono hover:text-neo-yellow transition-colors" onclick="closeMobileMenu()">/HOME</a>
+      <a href="#about"   class="text-white text-3xl font-black font-mono hover:text-neo-yellow transition-colors" onclick="closeMobileMenu()">/ABOUT</a>
+      <a href="#skills"  class="text-white text-3xl font-black font-mono hover:text-neo-yellow transition-colors" onclick="closeMobileMenu()">/SKILLS</a>
+      <a href="#experience" class="text-white text-3xl font-black font-mono hover:text-neo-yellow transition-colors" onclick="closeMobileMenu()">/LOGS</a>
+      <a href="#projects" class="text-white text-3xl font-black font-mono hover:text-neo-yellow transition-colors" onclick="closeMobileMenu()">/WORK</a>
+      <a href="#contact" class="bg-neo-yellow text-black border-2 border-white px-8 py-3 text-2xl font-black font-mono hover:bg-neo-pink transition-colors" onclick="closeMobileMenu()">HIRE ME</a>
+      <button onclick="closeMobileMenu()" class="absolute top-6 right-6 text-white text-4xl font-black" aria-label="Close menu">&times;</button>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 w-full z-50 px-4 py-4 pointer-events-none">
+      <div class="max-w-7xl mx-auto flex justify-between items-center pointer-events-auto">
+        <a href="#" class="bg-neo-white border-2 border-black px-4 py-1 text-2xl font-black shadow-hard hover:bg-neo-yellow transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none cursor-hover">ABHIRAJ.</a>
+        <div class="hidden md:flex gap-4 bg-white border-2 border-black p-2 shadow-hard">
+          <a href="#about"      class="px-3 py-1 font-mono font-bold text-sm hover:bg-black hover:text-white transition-colors cursor-hover">/ABOUT</a>
+          <a href="#skills"     class="px-3 py-1 font-mono font-bold text-sm hover:bg-black hover:text-white transition-colors cursor-hover">/SKILLS</a>
+          <a href="#experience" class="px-3 py-1 font-mono font-bold text-sm hover:bg-black hover:text-white transition-colors cursor-hover">/LOGS</a>
+          <a href="#projects"   class="px-3 py-1 font-mono font-bold text-sm hover:bg-black hover:text-white transition-colors cursor-hover">/WORK</a>
+          <a href="#contact"    class="px-3 py-1 font-mono font-bold text-sm bg-neo-yellow border border-black hover:bg-neo-pink transition-colors cursor-hover">HIRE ME</a>
+        </div>
+        <button id="hamburger" class="md:hidden flex flex-col gap-1.5 bg-neo-white border-2 border-black p-3 shadow-hard" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">
+          <span class="w-6 h-0.5 bg-black block"></span>
+          <span class="w-6 h-0.5 bg-black block"></span>
+          <span class="w-4 h-0.5 bg-black block"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="min-h-screen flex flex-col justify-center items-center px-4 pt-24 pb-12 relative overflow-hidden border-b-4 border-black">
+      <div class="absolute top-1/3 left-[10%] w-16 h-16 bg-neo-blue border-4 border-black shadow-hard animate-bounce hidden lg:block rotate-12"></div>
+      <div class="absolute bottom-1/3 right-[10%] w-24 h-24 bg-neo-pink rounded-full border-4 border-black shadow-hard hidden lg:block animate-pulse"></div>
+      <div class="absolute top-20 right-20 text-9xl opacity-5 font-black select-none pointer-events-none hidden md:block">CODE</div>
+      <div class="relative z-10 text-center max-w-5xl w-full">
+        <div class="inline-block bg-neo-white border-2 border-black px-4 py-1 mb-6 shadow-hard rotate-[-2deg] reveal">
+          <span class="font-mono font-bold text-neo-green bg-black px-2 mr-2">●</span>
+          <span class="font-mono font-bold text-sm md:text-base">SYSTEM STATUS: ONLINE</span>
+        </div>
+        <h1 class="hero-title leading-[0.85] font-black uppercase tracking-tighter mb-6 reveal mix-blend-darken" style="font-size: clamp(2.5rem, 13vw, 11rem);">
+          DEVOPS DATA<br />
+          <span class="text-white" style="-webkit-text-stroke: 3px black">ENGINEER</span>
+        </h1>
+        <p class="hero-subtitle font-mono text-base md:text-xl lg:text-2xl max-w-2xl mx-auto mb-10 bg-neo-yellow border-2 border-black p-3 md:p-4 shadow-hard reveal rotate-1">
+          Building production-ready data pipelines and backend services.<br />
+          <b>Python • Spark • Kafka • Airflow • Django • FastAPI</b>
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4 md:gap-6 reveal px-2">
+          <a href="#projects" class="bg-black text-white border-2 border-black px-8 md:px-10 py-4 md:py-5 text-lg md:text-xl font-bold shadow-hard hover:bg-neo-green hover:text-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-hover">VIEW PROJECTS</a>
+          <a href="Resume/Abhiraj_Adhikary_Resume_(M2).pdf" download class="bg-neo-white text-black border-2 border-black px-8 md:px-10 py-4 md:py-5 text-lg md:text-xl font-bold shadow-hard hover:bg-neo-pink hover:text-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-hover flex items-center justify-center gap-2">
+            <i class="ri-download-line"></i> DOWNLOAD CV
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKER — single line fix: white-space:nowrap on inner span -->
+    <div class="border-b-4 border-black bg-neo-blue py-3 relative z-20 overflow-hidden">
+      <div class="marquee-container">
+        <div class="marquee-content ticker-line font-mono font-bold text-lg md:text-2xl text-white">
+          <span style="white-space:nowrap;padding-right:4rem;">/// OPEN FOR WORK /// DATA ENGINEERING /// BACKEND DEVELOPMENT /// CLOUD NATIVE /// OBSERVABILITY /// CI/CD /// OPEN FOR WORK /// DATA ENGINEERING /// BACKEND DEVELOPMENT /// CLOUD NATIVE /// OBSERVABILITY /// CI/CD ///</span>
+          <span style="white-space:nowrap;padding-right:4rem;" aria-hidden="true">/// OPEN FOR WORK /// DATA ENGINEERING /// BACKEND DEVELOPMENT /// CLOUD NATIVE /// OBSERVABILITY /// CI/CD /// OPEN FOR WORK /// DATA ENGINEERING /// BACKEND DEVELOPMENT /// CLOUD NATIVE /// OBSERVABILITY /// CI/CD ///</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-16 md:py-24 px-4 max-w-7xl mx-auto border-x-0 md:border-x-4 border-black bg-white my-8 md:my-12 shadow-none md:shadow-hard-lg">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+        <div class="md:col-span-4 reveal">
+          <div class="aspect-square bg-gray-200 border-4 border-black relative shadow-hard overflow-hidden group max-w-xs mx-auto md:max-w-none">
+            <img src="Assets/images/img.jpg" alt="ABHIRAJ" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+            <span class="absolute top-2 left-2 bg-neo-red text-white px-2 font-mono text-xs border border-black z-10">AVATAR.JPG</span>
+          </div>
+        </div>
+        <div class="md:col-span-8 flex flex-col justify-center reveal">
+          <h2 class="text-4xl md:text-6xl font-black uppercase mb-4 md:mb-6">Who am I?</h2>
+          <p class="font-mono text-base md:text-xl leading-relaxed mb-4 md:mb-6">
+            I am Abhiraj Adhikary, an undergraduate CSE (Data Science) student focused on
+            <span class="bg-neo-yellow px-1 border border-black">data engineering and backend systems</span>.
+            I build reliable pipelines and developer-first products with practical, production-minded architecture.
+          </p>
+          <p class="font-mono text-sm md:text-lg mb-6 md:mb-8 text-gray-600 border-l-4 border-neo-purple pl-4">
+            > Hands-on with Spark, Kafka, Airflow, SQL, DBT, Snowflake.<br />
+            > Backend development using Python, Django, FastAPI, Flask.<br />
+            > CI/CD, Docker, cloud deployments, and observability with Prometheus/Grafana.
+          </p>
+          <div class="flex flex-wrap gap-3 md:gap-4">
+            <div class="bg-neo-black text-white px-3 md:px-4 py-2 font-mono text-xs md:text-sm border-2 border-transparent">📍 LOCATION: WEST BENGAL, INDIA</div>
+            <div class="bg-neo-green text-black px-3 md:px-4 py-2 font-mono text-xs md:text-sm border-2 border-black">🟢 STATUS: AVAILABLE</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="py-16 md:py-20 bg-neo-black text-neo-white border-y-4 border-black relative overflow-hidden">
+      <div class="absolute inset-0 opacity-20" style="background-image:linear-gradient(#333 1px,transparent 1px),linear-gradient(90deg,#333 1px,transparent 1px);background-size:40px 40px;"></div>
+      <div class="max-w-[1400px] mx-auto px-4 relative z-10">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 md:mb-12 border-b-4 border-white pb-4 gap-4">
+          <h2 class="text-5xl md:text-8xl font-black uppercase text-white tracking-tighter">TECH<span class="text-neo-green">_STACK</span></h2>
+          <div class="flex items-center gap-2 mb-0 md:mb-4">
+            <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+            <p class="font-mono text-neo-green text-sm font-bold">/// SYSTEM_OPTIMIZED</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8">
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-blue   transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">LANGUAGE</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">Python</div></div>
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-yellow transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">LANGUAGE</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">Golang</div></div>
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-purple transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">LANGUAGE</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">C</div></div>
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-white transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">DATABASE</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">MySQL</div></div>
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-pink transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">DATABASE</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">PostgreSQL</div></div>
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-green transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">BACKEND</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">Django</div></div>
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-yellow transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">BACKEND</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">FastAPI</div></div>
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-blue transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">BACKEND</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">Flask</div></div>
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-purple transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">DATA ENG</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">PySpark</div></div>
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-orange transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">DATA ENG</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">Airflow</div></div>
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-white transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">DATA ENG</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">DBT</div></div>
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-green transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">DATA ENG</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">Kafka</div></div>
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-blue transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">DATA ENG</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">Apache NiFi</div></div>
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-purple transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">DATA ENG</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">Snowflake</div></div>
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-orange transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">TOOLS</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">Docker</div></div>
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-white transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">TOOLS</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">GitHub Actions</div></div>
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-pink transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">TOOLS</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">GitLab CI/CD</div></div>
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-yellow transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">OBSERVE</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">Prometheus</div></div>
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-purple transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">OBSERVE</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">Grafana</div></div>
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-green transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">CLOUD</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">AWS</div></div>
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-blue transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">CLOUD</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">Azure CI/CD</div></div>
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-pink transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">SOFT SKILL</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">Communication</div></div>
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-yellow transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">SOFT SKILL</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">Problem Solving</div></div>
+          <div class="skills-grid-cell group h-20 md:h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-blue transition-all duration-300 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2"><div class="text-neo-green group-hover:text-black font-mono text-[9px] md:text-xs mb-1 opacity-50 uppercase">SOFT SKILL</div><div class="skill-name text-white group-hover:text-black font-black font-display uppercase">Adaptability</div></div>
+        </div>
+        <div class="border-t-4 border-white mt-8 pt-4 flex justify-between font-mono text-xs text-gray-500">
+          <span>TOTAL_NODES: 24</span>
+          <span>MEMORY_USAGE: 256MB</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="py-16 md:py-24 px-4 max-w-7xl mx-auto">
+      <h2 class="text-4xl md:text-8xl font-black uppercase mb-10 md:mb-12 tracking-tighter text-center">Experience<span class="text-neo-red">_Log</span></h2>
+      <div class="relative border-l-4 border-black ml-4 md:ml-10 space-y-8 md:space-y-12">
+
+        <div class="reveal relative pl-8 md:pl-16 timeline-entry">
+          <div class="timeline-dot absolute -left-[14px] top-2 w-6 h-6 bg-neo-pink border-4 border-black"></div>
+          <div class="bg-white border-4 border-black p-4 md:p-6 shadow-hard hover:shadow-hard-xl transition-all">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-dashed border-gray-300 pb-4 mb-4 gap-2">
+              <h3 class="text-2xl md:text-3xl font-black uppercase">Project Administrator</h3>
+              <span class="font-mono font-bold bg-neo-black text-white px-2 py-1 text-sm whitespace-nowrap">Jan 2026 - Present</span>
+            </div>
+            <p class="font-mono text-lg md:text-xl mb-2 text-neo-pink font-bold">@ Resourcio Community (Part-time)</p>
+            <ul class="list-disc list-inside font-mono text-sm md:text-base text-gray-700 space-y-1">
+              <li>Project admin and mentor for Openfeed — <span class="break-all">https://github.com/abhirajadhikary06/openfeedback</span></li>
+              <li>Remote role based in Kolkata, West Bengal, India.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="reveal relative pl-8 md:pl-16 timeline-entry">
+          <div class="timeline-dot absolute -left-[14px] top-2 w-6 h-6 bg-neo-yellow border-4 border-black"></div>
+          <div class="bg-white border-4 border-black p-4 md:p-6 shadow-hard hover:shadow-hard-xl transition-all">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-dashed border-gray-300 pb-4 mb-4 gap-2">
+              <h3 class="text-2xl md:text-3xl font-black uppercase">Research Intern</h3>
+              <span class="font-mono font-bold bg-neo-black text-white px-2 py-1 text-sm whitespace-nowrap">Oct 2025 - Present</span>
+            </div>
+            <p class="font-mono text-lg md:text-xl mb-2 font-bold" style="color: #EA3D28;">@ Brah.ma (Internship)</p>
+            <ul class="list-disc list-inside font-mono text-sm md:text-base text-gray-700 space-y-1">
+              <li>Research and build scalable backend services for community products.</li>
+              <li>Developing Chakra, a community-powered social media platform from scratch.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="reveal relative pl-8 md:pl-16 timeline-entry">
+          <div class="timeline-dot absolute -left-[14px] top-2 w-6 h-6 bg-neo-red border-4 border-black"></div>
+          <div class="bg-white border-4 border-black p-4 md:p-6 shadow-hard hover:shadow-hard-xl transition-all">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-dashed border-gray-300 pb-4 mb-4 gap-2">
+              <h3 class="text-2xl md:text-3xl font-black uppercase">Technical Teacher</h3>
+              <span class="font-mono font-bold bg-neo-black text-white px-2 py-1 text-sm whitespace-nowrap">Apr 2025 - Present</span>
+            </div>
+            <p class="font-mono text-lg md:text-xl mb-2 text-neo-red font-bold">@ IEEE HIT Student Branch (Part-time)</p>
+            <ul class="list-disc list-inside font-mono text-sm md:text-base text-gray-700 space-y-1">
+              <li>Instructed students on Git and GitHub workflows.</li>
+              <li>Mentored hackathon projects and improved delivery quality.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="reveal relative pl-8 md:pl-16 timeline-entry">
+          <div class="timeline-dot absolute -left-[14px] top-2 w-6 h-6 bg-neo-green border-4 border-black"></div>
+          <div class="bg-white border-4 border-black p-4 md:p-6 shadow-hard hover:shadow-hard-xl transition-all">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-dashed border-gray-300 pb-4 mb-4 gap-2">
+              <h3 class="text-2xl md:text-3xl font-black uppercase">Software Engineer Intern</h3>
+              <span class="font-mono font-bold bg-neo-black text-white px-2 py-1 text-sm whitespace-nowrap">Jul 2025 - Oct 2025</span>
+            </div>
+            <p class="font-mono text-lg md:text-xl mb-2 text-neo-green font-bold">@ Springer Capital (Internship)</p>
+            <ul class="list-disc list-inside font-mono text-sm md:text-base text-gray-700 space-y-1">
+              <li>Worked on backend engineering and testing with Django and PostgreSQL.</li>
+              <li>Contributed to Salesforce-aligned development workflows in a remote team setup.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="reveal relative pl-8 md:pl-16 timeline-entry">
+          <div class="timeline-dot absolute -left-[14px] top-2 w-6 h-6 bg-neo-blue border-4 border-black"></div>
+          <div class="bg-white border-4 border-black p-4 md:p-6 shadow-hard hover:shadow-hard-xl transition-all">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-dashed border-gray-300 pb-4 mb-4 gap-2">
+              <h3 class="text-2xl md:text-3xl font-black uppercase">Project Administrator</h3>
+              <span class="font-mono font-bold bg-neo-black text-white px-2 py-1 text-sm whitespace-nowrap">Jul 2025 - Oct 2025</span>
+            </div>
+            <p class="font-mono text-lg md:text-xl mb-2 text-neo-blue font-bold">@ GirlScript Summer of Code (Part-time)</p>
+            <ul class="list-disc list-inside font-mono text-sm md:text-base text-gray-700 space-y-1">
+              <li>Mentored 20+ contributors on EventStack across code quality and collaboration process.</li>
+              <li>Maintained project direction for repository and deployment workflows.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CODING STATS -->
+    <section id="coding-stats" class="py-12 bg-neo-black text-white border-y-4 border-black relative overflow-hidden">
+      <div class="absolute inset-0 opacity-20" style="background-image:linear-gradient(#333 1px,transparent 1px),linear-gradient(90deg,#333 1px,transparent 1px);background-size:40px 40px;"></div>
+      <div class="max-w-7xl mx-auto px-4 relative z-10">
+        <div class="flex justify-between items-center mb-6 border-b-2 border-white pb-3">
+          <h2 class="text-3xl md:text-5xl font-black uppercase text-white tracking-tight">CODING<span class="text-neo-green">_STATS</span></h2>
+          <div class="flex items-center gap-2">
+            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+            <p class="font-mono text-neo-green text-xs font-bold">LIVE</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+
+          <!-- GitHub -->
+          <div class="reveal flex flex-col stats-col">
+            <div class="flex items-center gap-2 mb-4 border-b border-white/20 pb-2">
+              <div class="w-8 h-8 bg-neo-green border-2 border-white flex items-center justify-center"><i class="ri-github-fill text-lg text-black"></i></div>
+              <h3 class="text-2xl font-black uppercase text-white">GITHUB</h3>
+            </div>
+            <div class="border-4 border-white/20 p-4 md:p-6 bg-black flex-1 flex flex-col shadow-[8px_8px_0_rgba(0,0,0,1)]">
+              <div class="flex items-center justify-between mb-6 md:mb-8 pb-4 border-b border-white/10">
+                <div class="flex items-center gap-3">
+                  <i class="ri-github-fill text-2xl md:text-3xl text-neo-green"></i>
+                  <div>
+                    <h4 class="text-lg md:text-xl font-black text-white leading-tight">abhirajadhikary06</h4>
+                    <p class="text-[10px] font-mono text-neo-green uppercase tracking-widest">Midnight Coder</p>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <div id="total-contributions" class="text-xl md:text-2xl font-black text-neo-green tracking-tighter">--</div>
+                  <p class="text-[8px] font-mono text-gray-500 uppercase">Commits</p>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-3 md:gap-4 mb-6 md:mb-8 uppercase">
+                <div class="border-2 border-neo-green/30 bg-neo-black/60 p-3 md:p-4 hover:border-neo-green transition-colors"><div class="text-[9px] font-mono text-neo-green mb-1 uppercase tracking-widest opacity-70">Repositories</div><div id="repos-count" class="text-white font-black text-2xl md:text-3xl tracking-tighter">--</div></div>
+                <div class="border-2 border-neo-green/30 bg-neo-black/60 p-3 md:p-4 hover:border-neo-green transition-colors"><div class="text-[9px] font-mono text-neo-green mb-1 uppercase tracking-widest opacity-70">Followers</div><div id="followers-count" class="text-white font-black text-2xl md:text-3xl tracking-tighter">--</div></div>
+                <div class="border-2 border-neo-green/30 bg-neo-black/60 p-3 md:p-4 hover:border-neo-green transition-colors"><div class="text-[9px] font-mono text-neo-green mb-1 uppercase tracking-widest opacity-70">Commits</div><div id="total-contributions-grid" class="text-white font-black text-2xl md:text-3xl tracking-tighter">--</div></div>
+                <div class="border-2 border-neo-green/30 bg-neo-black/60 p-3 md:p-4 hover:border-neo-green transition-colors"><div class="text-[9px] font-mono text-neo-green mb-1 uppercase tracking-widest opacity-70">Joined</div><div id="created-at" class="text-white font-black text-lg md:text-xl tracking-tighter mt-1 leading-none">--</div></div>
+              </div>
+              <div class="flex-1 flex flex-col justify-center mb-6 md:mb-8">
+                <div class="bg-black border-2 border-neo-green/30 p-2 overflow-hidden hover:border-neo-green transition-colors duration-500 relative">
+                  <div class="absolute top-1 right-1 w-1.5 h-1.5 bg-neo-green rounded-full animate-pulse"></div>
+                  <p class="text-[8px] font-mono text-neo-green/50 uppercase tracking-[0.2em] mb-1">Matrix_Output</p>
+                  <img src="https://ghchart.rshah.org/33FF57/abhirajadhikary06" alt="GitHub Contribution Graph" class="w-full h-auto filter brightness-110" />
+                </div>
+              </div>
+              <div class="mt-auto flex items-center justify-between text-neo-green p-3 border-2 border-white/10 bg-neo-black font-mono text-[11px]">
+                <div class="flex items-center gap-2"><span class="text-white/30">$</span><span class="text-neo-green">gh --stats</span><span class="animate-pulse">_</span></div>
+                <a href="https://github.com/abhirajadhikary06" target="_blank" class="text-neo-green px-3 py-1 font-black uppercase border border-neo-green hover:bg-neo-green hover:text-black transition-all">VIEW_GH →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- LeetCode -->
+          <div class="reveal flex flex-col stats-col">
+            <div class="flex items-center gap-2 mb-4 border-b border-white/20 pb-2">
+              <div class="w-8 h-8 bg-neo-orange border-2 border-white flex items-center justify-center"><i class="ri-code-box-fill text-lg text-black"></i></div>
+              <h3 class="text-2xl font-black uppercase text-white">LEETCODE</h3>
+            </div>
+            <div class="border-4 border-white/20 p-4 md:p-6 bg-black flex-1 flex flex-col shadow-[8px_8px_0_rgba(0,0,0,1)]">
+              <div class="flex items-center justify-between mb-6 md:mb-8 pb-4 border-b border-white/10">
+                <div class="flex items-center gap-3">
+                  <i class="ri-code-box-fill text-2xl md:text-3xl text-neo-orange"></i>
+                  <div>
+                    <h4 class="text-lg md:text-xl font-black text-white leading-tight">abhirajadhikary06</h4>
+                    <p class="text-[10px] font-mono text-neo-orange uppercase tracking-widest">Problem solver</p>
+                  </div>
+                </div>
+                <div class="text-right"><div id="lc-ranking" class="text-xl md:text-2xl font-black text-neo-orange tracking-tighter">--</div><p class="text-[8px] font-mono text-gray-500 uppercase">Ranking</p></div>
+              </div>
+              <div class="flex-1 flex flex-col justify-center mb-6 md:mb-8">
+                <div class="border-2 border-neo-orange/30 p-2 overflow-hidden bg-black hover:border-neo-orange transition-colors duration-500 relative">
+                  <div class="absolute top-1 right-1 w-1.5 h-1.5 bg-neo-orange rounded-full animate-pulse"></div>
+                  <img src="https://leetcard.jacoblin.cool/abhirajadhikary06?theme=dark&font=Ubuntu&ext=heatmap" alt="LeetCode Stats" class="w-full h-auto object-contain filter contrast-125" />
+                </div>
+              </div>
+              <div class="mt-auto flex items-center justify-between text-neo-orange p-3 border-2 border-white/10 bg-neo-black font-mono text-[11px]">
+                <div class="flex items-center gap-2"><span class="text-white/30">$</span><span class="text-neo-orange">leetcode --u</span><span class="animate-pulse">_</span></div>
+                <a href="https://leetcode.com/u/abhirajadhikary06/" target="_blank" class="text-neo-orange px-3 py-1 font-black uppercase border border-neo-orange hover:bg-neo-orange hover:text-black transition-all">VIEW_LC →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Codeforces -->
+          <div class="reveal flex flex-col stats-col">
+            <div class="flex items-center gap-2 mb-4 border-b border-white/20 pb-2">
+              <div class="w-8 h-8 bg-neo-purple border-2 border-white flex items-center justify-center"><i class="ri-code-s-slash-line text-lg text-black"></i></div>
+              <h3 class="text-2xl font-black uppercase text-white">CODEFORCES</h3>
+            </div>
+            <div class="border-4 border-white/20 p-4 md:p-6 bg-black flex-1 flex flex-col shadow-[8px_8px_0_rgba(0,0,0,1)] overflow-hidden">
+              <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+                <div class="flex items-center gap-3">
+                  <i class="ri-code-s-slash-line text-2xl md:text-3xl text-neo-purple"></i>
+                  <div>
+                    <h4 class="text-lg md:text-xl font-black text-white leading-tight">abhirajadhikary06</h4>
+                    <p class="text-[10px] font-mono text-neo-purple uppercase tracking-widest">Competitive Coder</p>
+                  </div>
+                </div>
+                <div class="text-right"><div id="cf-max-rating" class="text-xl md:text-2xl font-black text-neo-purple tracking-tighter">--</div><p class="text-[8px] font-mono text-gray-500 uppercase">Max Rating</p></div>
+              </div>
+              <div class="mb-6">
+                <div class="border-2 border-neo-purple/30 p-3 overflow-hidden bg-black">
+                  <img src="https://codeforces-readme-stats.vercel.app/api/card?username=abhirajadhikary06&theme=github_dark&t=1"
+     id="cf-stats-img" class="w-full h-auto object-contain" />
+                </div>
+              </div>
+              <div class="mt-auto flex items-center justify-between text-neo-purple p-3 border-2 border-white/10 bg-neo-black font-mono text-[11px]">
+                <div class="flex items-center gap-2"><span class="text-white/30">$</span><span class="text-neo-purple">cf --stats</span><span class="animate-pulse">_</span></div>
+                <a href="https://codeforces.com/profile/abhirajadhikary06" target="_blank" class="text-neo-purple px-3 py-1 font-black uppercase border border-neo-purple hover:bg-neo-purple hover:text-black transition-all">VIEW_CF →</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="py-16 md:py-24 bg-neo-yellow border-t-4 border-black px-4 overflow-hidden">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="font-black mb-10 md:mb-16 uppercase tracking-tighter text-white drop-shadow-[4px_4px_0_rgba(0,0,0,1)]" style="font-size:clamp(2.5rem,9vw,8rem);-webkit-text-stroke:3px black;">Featured Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+
+            <article class="reveal group bg-white border-4 border-black p-4 shadow-hard">
+            <div class="bg-black border-2 border-black aspect-video relative overflow-hidden mb-6"><img src="Assets/images/jobdig.png" alt="JobDig.ai" class="w-full h-full object-cover" /></div>
+            <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+              <div class="flex-1 min-w-0">
+              <h3 class="text-2xl md:text-4xl font-black uppercase mb-2 group-hover:text-neo-purple transition-colors glitch-hover">JobDig.ai</h3>
+              <p class="font-mono text-sm mb-4">Scrape job websites, extract information, and get AI-powered insights to find your perfect career match. Transform your job search with intelligent automation.</p>
+              <div class="flex gap-2 font-mono text-xs font-bold flex-wrap"><span class="bg-neo-black text-white px-2 py-1">Python</span><span class="bg-neo-black text-white px-2 py-1">FastAPI</span><span class="bg-neo-black text-white px-2 py-1">Web Scraping</span><span class="bg-neo-black text-white px-2 py-1">AI/ML</span></div>
+              </div>
+              <div class="flex flex-row sm:flex-col gap-3 self-start shrink-0">
+              <a href="https://github.com/abhirajadhikary06/JobDig.ai" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border-2 border-black bg-neo-green flex items-center justify-center hover:bg-black hover:text-white transition-all cursor-hover shadow-hard-sm"><i class="ri-github-fill text-2xl"></i></a>
+              <a href="https://jobdig-ai.onrender.com/" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border-2 border-black bg-neo-yellow flex items-center justify-center hover:bg-black hover:text-white transition-all cursor-hover shadow-hard-sm"><i class="ri-external-link-line text-2xl"></i></a>
+              </div>
+            </div>
+            </article>
+
+          <article class="reveal group bg-white border-4 border-black p-4 shadow-hard md:mt-20">
+            <div class="bg-black border-2 border-black aspect-video relative overflow-hidden mb-6"><img src="Assets/images/gitcollab.png" alt="GitCollab" class="w-full h-full object-cover" /></div>
+            <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+              <div class="flex-1 min-w-0">
+                <h3 class="text-2xl md:text-4xl font-black uppercase mb-2 group-hover:text-neo-blue transition-colors glitch-hover">GitCollab</h3>
+                <p class="font-mono text-sm mb-4">GitHub collaboration platform with real-time communication and productivity workflows for open-source teams.</p>
+                <div class="flex gap-2 font-mono text-xs font-bold flex-wrap"><span class="bg-neo-black text-white px-2 py-1">Python</span><span class="bg-neo-black text-white px-2 py-1">Django</span><span class="bg-neo-black text-white px-2 py-1">PostgreSQL</span><span class="bg-neo-black text-white px-2 py-1">GitHub API</span></div>
+              </div>
+              <div class="flex flex-row sm:flex-col gap-3 self-start shrink-0">
+                <a href="https://github.com/abhirajadhikary06/gitcollab" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border-2 border-black bg-neo-green flex items-center justify-center hover:bg-black hover:text-white transition-all cursor-hover shadow-hard-sm"><i class="ri-github-fill text-2xl"></i></a>
+                <a href="https://gitcollab.onrender.com" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border-2 border-black bg-neo-yellow flex items-center justify-center hover:bg-black hover:text-white transition-all cursor-hover shadow-hard-sm"><i class="ri-external-link-line text-2xl"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="reveal group bg-white border-4 border-black p-4 shadow-hard">
+            <div class="bg-black border-2 border-black aspect-video relative overflow-hidden mb-6"><img src="Assets/images/zerokey.png" alt="Zerokey" class="w-full h-full object-cover" /></div>
+            <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+              <div class="flex-1 min-w-0">
+                <h3 class="text-2xl md:text-4xl font-black uppercase mb-2 group-hover:text-neo-purple transition-colors glitch-hover">Zerokey</h3>
+                <p class="font-mono text-sm mb-4">Secure AI API key manager with key rotation, safe storage, and a unified interface for multiple LLM providers.</p>
+                <div class="flex gap-2 font-mono text-xs font-bold flex-wrap"><span class="bg-neo-black text-white px-2 py-1">Python</span><span class="bg-neo-black text-white px-2 py-1">FastAPI</span><span class="bg-neo-black text-white px-2 py-1">NeonDB</span><span class="bg-neo-black text-white px-2 py-1">PyPI</span></div>
+              </div>
+              <div class="flex flex-row sm:flex-col gap-3 self-start shrink-0">
+                <a href="https://github.com/abhirajadhikary06/zerokey" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border-2 border-black bg-neo-green flex items-center justify-center hover:bg-black hover:text-white transition-all cursor-hover shadow-hard-sm"><i class="ri-github-fill text-2xl"></i></a>
+                <a href="https://gitcollab-pmco.onrender.com" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border-2 border-black bg-neo-yellow flex items-center justify-center hover:bg-black hover:text-white transition-all cursor-hover shadow-hard-sm"><i class="ri-external-link-line text-2xl"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="reveal group bg-white border-4 border-black p-4 shadow-hard md:mt-20">
+            <div class="bg-black border-2 border-black aspect-video relative overflow-hidden mb-6"><img src="Assets/images/de_pipeline.png" alt="dbt-snowflake-airflow-pipeline" class="w-full h-full object-cover" /></div>
+            <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+              <div class="flex-1 min-w-0">
+                <h3 class="text-2xl md:text-4xl font-black uppercase mb-2 group-hover:text-neo-blue transition-colors glitch-hover">DBT SNOWFLAKE AIRFLOW PIPELINE</h3>
+                <p class="font-mono text-sm mb-4">ETL pipeline project built with modern data engineering tooling using dbt, Snowflake, and Apache Airflow.</p>
+                <div class="flex gap-2 font-mono text-xs font-bold flex-wrap"><span class="bg-neo-black text-white px-2 py-1">Python</span><span class="bg-neo-black text-white px-2 py-1">DBT</span><span class="bg-neo-black text-white px-2 py-1">Airflow</span><span class="bg-neo-black text-white px-2 py-1">Snowflake</span></div>
+              </div>
+              <div class="flex flex-row sm:flex-col gap-3 self-start shrink-0">
+                <a href="https://github.com/abhirajadhikary06/dbt-snowflake-airflow-pipeline" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border-2 border-black bg-neo-green flex items-center justify-center hover:bg-black hover:text-white transition-all cursor-hover shadow-hard-sm"><i class="ri-github-fill text-2xl"></i></a>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="text-center mt-16 md:mt-24">
+          <a href="https://github.com/abhirajadhikary06?tab=repositories" class="inline-block bg-neo-black text-white px-8 md:px-12 py-4 md:py-5 font-bold font-mono text-lg md:text-xl hover:bg-neo-white hover:text-black border-4 border-black transition-all shadow-hard hover:shadow-none cursor-hover">VIEW ALL REPOS ON GITHUB</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOGS -->
+    <section id="blogs" class="py-16 md:py-24 bg-neo-black border-t-4 border-black overflow-hidden relative">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex items-center justify-between mb-10 md:mb-16 bg-white/5 border-2 border-white/10 p-3 md:p-4 shadow-hard w-full">
+          <div class="flex items-center gap-2 min-w-0">
+            <div class="flex gap-1.5 shrink-0">
+              <div class="h-3 w-3 bg-red-500 rounded-full border border-black"></div>
+              <div class="h-3 w-3 bg-yellow-500 rounded-full border border-black"></div>
+              <div class="h-3 w-3 bg-green-500 rounded-full border border-black"></div>
+            </div>
+            <h2 class="font-mono text-white text-base md:text-xl font-bold ml-2 md:ml-4 tracking-tighter">Blogs</h2>
+            <div class="ml-2 md:ml-8 px-2 bg-neo-blue text-black text-[10px] font-black uppercase whitespace-nowrap">LIVE_FEED</div>
+          </div>
+          <a href="https://dev.to/abhirajadhikary06" target="_blank" rel="noopener noreferrer" class="ml-2 px-3 md:px-4 py-1.5 bg-neo-purple/20 border border-neo-purple text-neo-purple text-xs font-mono font-bold uppercase tracking-wider hover:bg-neo-purple hover:text-black transition-all duration-300 flex items-center gap-1 group shrink-0">
+            <span>dev.to</span><i class="ri-external-link-line text-sm group-hover:rotate-45 transition-transform"></i>
+          </a>
+        </div>
+      </div>
+      <div class="marquee-container overflow-hidden w-full">
+        <div class="marquee-content" id="blog-track">
+          <a href="https://dev.to/abhirajadhikary06/building-a-complete-devops-pipeline-flask-app-with-docker-jenkins-github-actions-prometheus-4bam" target="_blank" rel="noopener noreferrer" class="blog-card bg-neo-black border-4 border-white/10 overflow-hidden shadow-hard hover:border-neo-green/50 hover:-translate-y-2 transition-all duration-500 block">
+            <div class="w-full h-40 md:h-48 overflow-hidden border-b-4 border-neo-green"><img src="Assets/images/devops_pipeline.png" alt="DevOps Pipeline" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" onerror="this.src='https://via.placeholder.com/420x192/121212/33FF57?text=DevOps+Pipeline';" /></div>
+            <div class="p-4 md:p-6"><div class="flex justify-between items-start mb-3"><div class="font-mono text-neo-green text-xs font-bold tracking-widest uppercase">BLOG_001</div><div class="text-[10px] font-mono text-gray-500">2025</div></div><h3 class="font-black text-base md:text-xl leading-tight mb-3 text-white/90 hover:text-neo-green transition-colors">Building a Complete DevOps Pipeline with Flask, Docker &amp; Jenkins</h3><p class="font-mono text-gray-300 text-sm mb-4 line-clamp-3">Flask backend with Pytest, Docker containerization, GitHub Actions CI/CD, and Prometheus/Grafana monitoring.</p><span class="font-mono text-xs text-neo-green/70">Read on DEV.to →</span></div>
+          </a>
+          <a href="https://dev.to/abhirajadhikary06/github-profile-summarizer-with-n8n-and-bright-data-53di" target="_blank" rel="noopener noreferrer" class="blog-card bg-neo-black border-4 border-white/10 overflow-hidden shadow-hard hover:border-neo-blue/50 hover:-translate-y-2 transition-all duration-500 block">
+            <div class="w-full h-40 md:h-48 overflow-hidden border-b-4 border-neo-blue"><img src="Assets/images/n8n_github_analyser.png" alt="GitHub Analyser" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" onerror="this.src='https://via.placeholder.com/420x192/121212/3B82F6?text=GitHub+Analyser';" /></div>
+            <div class="p-4 md:p-6"><div class="flex justify-between items-start mb-3"><div class="font-mono text-neo-blue text-xs font-bold tracking-widest uppercase">BLOG_002</div><div class="text-[10px] font-mono text-gray-500">2025</div></div><h3 class="font-black text-base md:text-xl leading-tight mb-3 text-white/90">GitHub Profile Summarizer with n8n &amp; Bright Data</h3><p class="font-mono text-gray-300 text-sm mb-4 line-clamp-3">AI-powered agent that scrapes GitHub profiles and generates HTML summaries using n8n and Mistral AI.</p><span class="font-mono text-xs text-neo-blue/70">Read on DEV.to →</span></div>
+          </a>
+          <a href="https://dev.to/abhirajadhikary06/dropbox-user-sentiment-analysis-using-airbyte-and-motherduck-1ggd" target="_blank" rel="noopener noreferrer" class="blog-card bg-neo-black border-4 border-white/10 overflow-hidden shadow-hard hover:border-neo-pink/50 hover:-translate-y-2 transition-all duration-500 block">
+            <div class="w-full h-40 md:h-48 overflow-hidden border-b-4 border-neo-pink"><img src="Assets/images/dropbox_sentiment.png" alt="Sentiment Analysis" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" onerror="this.src='https://via.placeholder.com/420x192/121212/FF70A6?text=Sentiment+Analysis';" /></div>
+            <div class="p-4 md:p-6"><div class="flex justify-between items-start mb-3"><div class="font-mono text-neo-pink text-xs font-bold tracking-widest uppercase">BLOG_003</div><div class="text-[10px] font-mono text-gray-500">2025</div></div><h3 class="font-black text-base md:text-xl leading-tight mb-3 text-white/90">Dropbox User Sentiment Analysis with Airbyte &amp; Motherduck</h3><p class="font-mono text-gray-300 text-sm mb-4 line-clamp-3">Streamlit dashboard for analyzing Dropbox sentiment using Airbyte for extraction and DuckDB for storage.</p><span class="font-mono text-xs text-neo-pink/70">Read on DEV.to →</span></div>
+          </a>
+          <a href="https://www.linkedin.com/posts/abhirajadhikary06_benchmark-performance-of-pandas-polars-activity-7410925407534870529-_9xa" target="_blank" rel="noopener noreferrer" class="blog-card bg-neo-black border-4 border-white/10 overflow-hidden shadow-hard hover:border-neo-purple/50 hover:-translate-y-2 transition-all duration-500 block">
+            <div class="w-full h-40 md:h-48 overflow-hidden border-b-4 border-neo-purple"><img src="Assets/images/benchmarking.png" alt="Benchmarking" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" onerror="this.src='https://via.placeholder.com/420x192/121212/E879F9?text=Benchmarking';" /></div>
+            <div class="p-4 md:p-6"><div class="flex justify-between items-start mb-3"><div class="font-mono text-neo-purple text-xs font-bold tracking-widest uppercase">BLOG_004</div><div class="text-[10px] font-mono text-gray-500">2025</div></div><h3 class="font-black text-base md:text-xl leading-tight mb-3 text-white/90">Benchmarking Pandas, Polars, Dask &amp; PySpark Performance</h3><p class="font-mono text-gray-300 text-sm mb-4 line-clamp-3">Performance comparison on filtering, aggregation, and join operations across data manipulation libraries.</p><span class="font-mono text-xs text-neo-purple/70">Read on LinkedIn →</span></div>
+          </a>
+          <a href="https://tinyurl.com/githubtutorial-abhirajadhikary" target="_blank" rel="noopener noreferrer" class="blog-card bg-neo-black border-4 border-white/10 overflow-hidden shadow-hard hover:border-neo-yellow/50 hover:-translate-y-2 transition-all duration-500 block">
+            <div class="w-full h-40 md:h-48 overflow-hidden border-b-4 border-neo-yellow"><img src="Assets/images/githubtut.png" alt="GitHub Tutorial" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" onerror="this.src='https://via.placeholder.com/420x192/121212/FFD900?text=GitHub+Tutorial';" /></div>
+            <div class="p-4 md:p-6"><div class="flex justify-between items-start mb-3"><div class="font-mono text-neo-yellow text-xs font-bold tracking-widest uppercase">BLOG_005</div><div class="text-[10px] font-mono text-gray-500">2025</div></div><h3 class="font-black text-base md:text-xl leading-tight mb-3 text-white/90">A Nice GitHub Tutorial</h3><p class="font-mono text-gray-300 text-sm mb-4 line-clamp-3">Version control essentials, git branching, pull requests, and open-source contribution workflows explained visually.</p><span class="font-mono text-xs text-neo-yellow/70">Learn More →</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-16 md:py-24 px-4 max-w-5xl mx-auto">
+      <div class="bg-white border-4 border-black shadow-hard-xl p-6 md:p-8 lg:p-12 relative reveal mt-12">
+        <div class="absolute -top-8 md:-top-10 left-4 md:-left-6 bg-neo-yellow border-4 border-black px-4 md:px-6 py-2 shadow-hard rotate-[-5deg]">
+          <span class="font-black text-lg md:text-2xl">START A PROJECT</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 contact-grid">
+          <div>
+            <h2 class="text-4xl md:text-6xl font-black uppercase mb-4 md:mb-6 leading-[0.85]">Let's<br />Build<br />Together.</h2>
+            <p class="font-mono text-base md:text-lg mb-6 md:mb-8 text-gray-600">Open to internships, backend roles, and data engineering opportunities.</p>
+            <div class="space-y-4">
+              <div class="flex items-center gap-3 md:gap-4">
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-neo-black text-white flex items-center justify-center border-2 border-black shrink-0">
+                  <i class="ri-mail-line text-lg md:text-xl"></i>
+                </div>
+                <!--
+                  EMAIL LINK — built entirely in JS so Cloudflare's bot
+                  cannot detect and obfuscate it during deployment.
+                  Do NOT add a mailto: href here; the script below sets it.
+                -->
+                <a id="contact-email-link" href="#" class="text-sm md:text-xl font-bold hover:bg-neo-blue cursor-hover break-all"></a>
+              </div>
+              <div class="flex items-center gap-3 md:gap-4">
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-neo-black text-white flex items-center justify-center border-2 border-black shrink-0">
+                  <i class="ri-phone-line text-lg md:text-xl"></i>
+                </div>
+                <span class="text-base md:text-xl font-bold">+91 9474190020</span>
+              </div>
+              <div class="flex items-center gap-3 md:gap-4">
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-neo-black text-white flex items-center justify-center border-2 border-black shrink-0">
+                  <i class="ri-map-pin-line text-lg md:text-xl"></i>
+                </div>
+                <span class="text-base md:text-xl font-bold">West Bengal, India</span>
+              </div>
+            </div>
+          </div>
+          <form id="contact-form" action="https://script.google.com/macros/s/AKfycbwoRCPavPCVuaSfllbM-QWxXNWoB3NH7zbOlY67Kv3fyVC_nHOOzBgYcADi8CK1Cf-QmA/exec" method="POST" class="space-y-5 md:space-y-6 bg-gray-50 p-4 md:p-6 border-2 border-black">
+            <div class="flex flex-col">
+              <label class="font-mono font-bold mb-1 uppercase text-xs">IDENTITY</label>
+              <input type="text" name="identity" placeholder="NAME / COMPANY" required class="bg-white border-2 border-black p-3 font-bold focus:outline-none focus:bg-neo-yellow focus:shadow-hard-sm transition-all cursor-hover" />
+            </div>
+            <div class="flex flex-col">
+              <label class="font-mono font-bold mb-1 uppercase text-xs">COORDINATES</label>
+              <input type="email" name="email" placeholder="EMAIL ADDRESS" required class="bg-white border-2 border-black p-3 font-bold focus:outline-none focus:bg-neo-yellow focus:shadow-hard-sm transition-all cursor-hover" />
+            </div>
+            <div class="flex flex-col">
+              <label class="font-mono font-bold mb-1 uppercase text-xs">TRANSMISSION</label>
+              <textarea name="message" rows="4" placeholder="PROJECT DETAILS..." required class="bg-white border-2 border-black p-3 font-bold focus:outline-none focus:bg-neo-yellow focus:shadow-hard-sm transition-all resize-none cursor-hover"></textarea>
+            </div>
+            <button type="submit" class="w-full bg-neo-blue text-white font-black text-lg md:text-xl py-3 md:py-4 border-2 border-black shadow-hard hover:bg-neo-black hover:translate-y-1 hover:shadow-none transition-all cursor-hover">TRANSMIT DATA</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Success Toast -->
+    <div id="success-toast" class="fixed inset-0 flex items-center justify-center z-50 pointer-events-none opacity-0 transition-opacity duration-500 px-4">
+      <div class="bg-black border-4 border-neo-green text-neo-green px-6 md:px-10 py-5 md:py-6 rounded-none shadow-hard-xl flex items-center gap-4 md:gap-5">
+        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full border-4 border-neo-green flex items-center justify-center relative animate-check-ring">
+          <svg class="w-8 h-8 md:w-10 md:h-10 animate-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="5" d="M5 13l4 4L19 7" /></svg>
+        </div>
+        <div class="font-mono font-black text-xl md:text-2xl tracking-widest">TRANSMITTED</div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white py-12 md:py-16 px-4 border-t-8 border-neo-green font-mono relative overflow-hidden">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 relative z-10 footer-grid">
+        <div class="col-span-1 sm:col-span-2">
+          <h2 class="text-3xl md:text-4xl font-black mb-4 md:mb-6">ABHIRAJ.</h2>
+          <p class="text-gray-400 max-w-sm text-sm md:text-base">Undergraduate CSE (Data Science) student building scalable data and backend systems with practical engineering focus.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-neo-green mb-4 border-b border-gray-700 pb-2">SITEMAP</h3>
+          <ul class="space-y-2 text-gray-400 text-sm md:text-base">
+            <li><a href="#"          class="hover:text-white hover:underline decoration-neo-pink decoration-2 cursor-hover">Home</a></li>
+            <li><a href="#projects"  class="hover:text-white hover:underline decoration-neo-pink decoration-2 cursor-hover">Works</a></li>
+            <li><a href="#about"     class="hover:text-white hover:underline decoration-neo-pink decoration-2 cursor-hover">About</a></li>
+            <li><a href="#contact"   class="hover:text-white hover:underline decoration-neo-pink decoration-2 cursor-hover">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-bold text-neo-green mb-4 border-b border-gray-700 pb-2">SOCIALS</h3>
+          <div class="flex gap-4 flex-wrap">
+            <a href="https://www.linkedin.com/in/abhirajadhikary06/" target="_blank" rel="noopener noreferrer" class="text-2xl md:text-3xl hover:text-neo-purple transition-colors cursor-hover" title="LinkedIn"><i class="ri-linkedin-fill"></i></a>
+            <a href="https://github.com/abhirajadhikary06"                   target="_blank" rel="noopener noreferrer" class="text-2xl md:text-3xl hover:text-neo-yellow transition-colors cursor-hover" title="GitHub"><i class="ri-github-fill"></i></a>
+            <a href="https://codeforces.com/profile/abhirajadhikary06"       target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition-opacity cursor-hover" title="Codeforces"><img src="Assets/images/cf.png" alt="Codeforces" class="w-6 h-6 md:w-7 md:h-7" /></a>
+            <a href="https://leetcode.com/u/abhirajadhikary06/"              target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition-opacity cursor-hover" title="LeetCode"><img src="Assets/images/lc.png" alt="LeetCode" class="w-6 h-6 md:w-7 md:h-7" /></a>
+            <a href="https://www.codechef.com/practice"                        target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition-opacity cursor-hover" title="CodeChef"><img src="Assets/images/cc.png" alt="CodeChef" class="w-6 h-6 md:w-7 md:h-7" /></a>
+            <a href="/"                  target="_blank" rel="noopener noreferrer" class="text-2xl md:text-3xl hover:text-neo-green  transition-colors cursor-hover" title="Kaggle"><i class="ri-database-2-fill"></i></a>
+            <a href="/"                 target="_blank" rel="noopener noreferrer" class="text-2xl md:text-3xl hover:text-neo-red    transition-colors cursor-hover" title="YouTube"><i class="ri-youtube-fill"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-10 md:mt-16 pt-8 border-t border-gray-800 text-gray-500 text-xs md:text-sm">
+        <p>© 2026 ABHIRAJ.exe // SYSTEM_END</p>
+      </div>
+      <div class="absolute bottom-0 left-0 w-full text-[20vw] font-black text-white opacity-[0.03] leading-none select-none pointer-events-none text-center">BRUTAL</div>
+    </footer>
+
+    <script>
+      // ── BLOG MARQUEE: duplicate cards in JS for seamless infinite loop ──
+      (function () {
+        var track = document.getElementById('blog-track');
+        if (track) {
+          var cards = Array.from(track.children);
+          cards.forEach(function (card) {
+            var clone = card.cloneNode(true);
+            clone.setAttribute('aria-hidden', 'true');
+            track.appendChild(clone);
+          });
+        }
+      })();
+
+      // ── EMAIL LINK: assembled in JS so Cloudflare cannot obfuscate it ──
+      (function () {
+        var u = 'abhirajadhikary06';
+        var d = 'gmail' + '.com';
+        var el = document.getElementById('contact-email-link');
+        if (el) {
+          el.setAttribute('href', ['mai', 'lto:', u, '@', d].join(''));
+          el.textContent = u + '@' + d;
+        }
+      })();
+
+      // ── MOBILE MENU ──
+      function toggleMobileMenu() {
+        var menu = document.getElementById('mobile-menu');
+        var open = menu.classList.contains('open');
+        if (open) { menu.classList.remove('open'); document.body.style.overflow = ''; }
+        else       { menu.classList.add('open');    document.body.style.overflow = 'hidden'; }
+      }
+      function closeMobileMenu() {
+        document.getElementById('mobile-menu').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+      document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeMobileMenu(); });
+
+      // ── CUSTOM CURSOR (desktop only) ──
+      var cursor = document.getElementById('cursor');
+      document.addEventListener('mousemove', function(e){
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top  = e.clientY + 'px';
+        cursor.style.transform = 'translate(-50%,-50%)';
+      });
+      document.querySelectorAll('.cursor-hover,a,button,input,textarea').forEach(function(el){
+        el.addEventListener('mouseenter', function(){
+          cursor.style.width = '60px'; cursor.style.height = '60px';
+          cursor.style.backgroundColor = '#FBFF48';
+          cursor.style.mixBlendMode = 'normal';
+          cursor.style.border = '2px solid black';
+        });
+        el.addEventListener('mouseleave', function(){
+          cursor.style.width = '24px'; cursor.style.height = '24px';
+          cursor.style.backgroundColor = '#fff';
+          cursor.style.mixBlendMode = 'difference';
+          cursor.style.border = 'none';
+        });
+      });
+
+      // ── GITHUB API ──
+      async function fetchGitHubStats() {
+        try {
+          var res = await fetch('https://api.github.com/users/abhirajadhikary06', { headers: { Accept: 'application/vnd.github.v3+json' } });
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          var data = await res.json();
+          document.getElementById('repos-count').textContent    = data.public_repos || '0';
+          document.getElementById('followers-count').textContent = data.followers    || '0';
+          if (data.created_at) {
+            var d = new Date(data.created_at);
+            document.getElementById('created-at').textContent = d.toLocaleDateString('en-US',{year:'numeric',month:'short'});
+          }
+          var v = (data.public_repos * 20 + data.followers * 5) + '+';
+          var h = document.getElementById('total-contributions');
+          var g = document.getElementById('total-contributions-grid');
+          if (h) h.textContent = v;
+          if (g) g.textContent = v;
+        } catch(err) {
+          ['repos-count','followers-count','created-at','total-contributions','total-contributions-grid'].forEach(function(id){
+            var el = document.getElementById(id); if(el) el.textContent = 'ERR';
+          });
+        }
+      }
+      fetchGitHubStats();
+
+      // ── CODEFORCES API ──
+      async function fetchCodeforcesStats() {
+        try {
+          var res = await fetch('https://codeforces.com/api/user.info?handles=abhirajadhikary06');
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          var data = await res.json();
+          if (data.status !== 'OK' || !data.result || !data.result.length) throw new Error('Invalid payload');
+          var user = data.result[0];
+          var maxRating = user.maxRating || user.rating || '--';
+          var el = document.getElementById('cf-max-rating');
+          if (el) el.textContent = String(maxRating);
+        } catch (err) {
+          var el = document.getElementById('cf-max-rating');
+          if (el) el.textContent = 'ERR';
+        }
+      }
+      fetchCodeforcesStats();
+
+      // ── LEETCODE API ──
+      async function fetchLeetCodeRanking() {
+        var target = document.getElementById('lc-ranking');
+        if (!target) return;
+
+        function extractRanking(payload) {
+          if (!payload || typeof payload !== 'object') return null;
+          return payload.ranking || payload.rank || (payload.data && (payload.data.ranking || payload.data.rank)) || null;
+        }
+
+        var endpoints = [
+          'https://alfa-leetcode-api.onrender.com/userProfile/abhirajadhikary06',
+          'https://leetcode-stats-api.herokuapp.com/abhirajadhikary06'
+        ];
+
+        for (var i = 0; i < endpoints.length; i++) {
+          try {
+            var res = await fetch(endpoints[i]);
+            if (!res.ok) continue;
+            var data = await res.json();
+            var ranking = extractRanking(data);
+            if (ranking) {
+              target.textContent = '#' + String(ranking);
+              return;
+            }
+          } catch (e) {
+          }
+        }
+
+        target.textContent = 'ERR';
+      }
+      fetchLeetCodeRanking();
+
+      // ── SCROLL REVEAL ──
+      var revealObs = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('active'); });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal').forEach(function(el){ revealObs.observe(el); });
+
+      // ── PROGRESS BAR ──
+      window.addEventListener('scroll', function(){
+        var s = document.body.scrollTop || document.documentElement.scrollTop;
+        var h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        document.getElementById('progressBar').style.width = (s/h*100) + '%';
+      });
+
+      // ── CONTACT FORM ──
+      document.addEventListener('DOMContentLoaded', function(){
+        var form = document.getElementById('contact-form');
+        if (!form) return;
+        form.addEventListener('submit', async function(e){
+          e.preventDefault();
+          try {
+            await fetch(form.action, { method:'POST', mode:'no-cors', body: new FormData(form) });
+            var toast = document.getElementById('success-toast');
+            toast.classList.remove('opacity-0'); toast.classList.add('opacity-100');
+            form.reset();
+            setTimeout(function(){ toast.classList.remove('opacity-100'); toast.classList.add('opacity-0'); }, 4000);
+          } catch(err) {
+            alert('Error: ' + err.message + '\n\nPlease email directly.');
+          }
+        });
+      });
+
+// Force Codeforces stats to reload fresh on every visit
+var cfImg = document.getElementById('cf-stats-img');
+if (cfImg) {
+  cfImg.src = cfImg.src.replace('&t=1', '&t=' + Date.now());
+}
+    </script>
+  </body>
+</html>
