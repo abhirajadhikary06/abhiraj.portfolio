@@ -184,6 +184,40 @@
       }
       .skills-grid-cell { min-width: 0; overflow: hidden; }
       .skills-grid-cell .skill-name { font-size: clamp(0.75rem, 2vw, 1.25rem); word-break: break-word; text-align: center; }
+      .skills-grid-cell > div { transition: opacity 0.25s ease, transform 0.25s ease; }
+      .skill-logo-wrap {
+        position: absolute;
+        left: 50%;
+        bottom: 2px;
+        transform: translate(-50%, 120%);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease, transform 0.25s ease;
+      }
+      .skill-logo-img {
+        width: 36px;
+        height: 36px;
+        object-fit: contain;
+        filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.7));
+      }
+      @media (min-width: 768px) {
+        .skill-logo-img { width: 42px; height: 42px; }
+      }
+      .skills-grid-cell.has-logo:hover > div:not(.skill-logo-wrap) {
+        opacity: 0;
+        transform: translateY(-6px);
+      }
+      .skills-grid-cell.has-logo:hover .skill-logo-wrap {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+      .skills-grid-cell.has-logo:hover .skill-logo-img {
+        animation: skill-logo-bounce 1.2s ease-in-out infinite;
+      }
+      @keyframes skill-logo-bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-50px); }
+      }
       @media (max-width: 400px) { .timeline-entry { padding-left: 2rem !important; } .timeline-dot { left: -10px !important; } }
       @media (max-width: 640px) { .contact-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; } }
       @media (max-width: 640px) { .footer-grid { grid-template-columns: 1fr !important; gap: 2rem !important; } }
@@ -783,6 +817,68 @@
           el.setAttribute('href', ['mai', 'lto:', u, '@', d].join(''));
           el.textContent = u + '@' + d;
         }
+      })();
+
+      // ── SKILLS HOVER LOGOS ──
+      (function () {
+        var logoAliases = {
+          golang: 'go',
+          python: 'python',
+          c: 'c',
+          mysql: 'mysql',
+          postgresql: 'postgre',
+          django: 'django',
+          fastapi: 'fastapi',
+          flask: 'flask',
+          pyspark: 'spark',
+          airflow: 'airflow',
+          dbt: 'dbt',
+          kafka: 'kafka',
+          'apache nifi': 'nifi',
+          snowflake: 'snowflake',
+          docker: 'docker',
+          'github actions': 'githubactions',
+          'gitlab ci/cd': 'gitlab',
+          prometheus: 'prometheus',
+          grafana: 'grafana',
+          aws: 'aws',
+          'azure ci/cd': 'azure',
+          pytest: 'pytest'
+        };
+
+        var cells = document.querySelectorAll('#skills .skills-grid-cell');
+        cells.forEach(function (cell) {
+          var skillEl = cell.querySelector('.skill-name');
+          if (!skillEl) return;
+
+          var skill = (skillEl.textContent || '').trim();
+          if (!skill) return;
+
+          var normalized = skill.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+          var slug = logoAliases[skill.toLowerCase()] || normalized;
+          if (!slug) return;
+
+          var wrap = document.createElement('div');
+          wrap.className = 'skill-logo-wrap';
+
+          var img = document.createElement('img');
+          img.className = 'skill-logo-img';
+          img.loading = 'lazy';
+          img.alt = skill + ' logo';
+          img.src = 'Assets/logos/' + slug + '.png';
+
+          img.addEventListener('load', function () {
+            cell.classList.add('has-logo');
+          });
+
+          img.addEventListener('error', function () {
+            if (wrap.parentNode) wrap.parentNode.removeChild(wrap);
+            cell.classList.remove('has-logo');
+          });
+
+          wrap.appendChild(img);
+          cell.appendChild(wrap);
+        });
       })();
 
       // ── MOBILE MENU ──
